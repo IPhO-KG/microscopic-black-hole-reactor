@@ -17,7 +17,7 @@ The mass dynamics are modelled by
 
 where the first term represents Bondi accretion and the second represents
 Hawking evaporation.
-
+ 
 The model admits a critical mass
 
 \[
