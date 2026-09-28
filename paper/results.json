@@ -1,0 +1,43 @@
+{
+  "A_kg^-1_s^-1": 4.146556075026202e-27,
+  "B_kg^3_s^-1": 3962839079029601.5,
+  "K_W_kg^2": 3.5616221447784954e+32,
+  "Mcrit_kg": 31266532750.629322,
+  "M0_over_Mcrit": 0.00031983079415157486,
+  "tstar_years": 244415512.7129609,
+  "efold_years": 61103878.178240225,
+  "tau_bb_hours": 23.365216388061402,
+  "Q_balance": 95569407656076.62,
+  "blackbody_power_M0_W": 3.5616221447784955e+18,
+  "hawking_temperature_M0_K": 1.226900670594017e+16,
+  "capture_radius_M0_m": 2.966355555555555e-10,
+  "evap_time_x0_0.95_tstar": 0.5360090340945259,
+  "double_time_x0_1.05_tstar": 0.8276668059161981,
+  "numerical_checks": {
+    "0.80": {
+      "event_time_s": 0.21189400644449638,
+      "maximum_implicit_residual": 1.6708023853340137e-12,
+      "event_time_error": 4.921341112407163e-13
+    },
+    "0.95": {
+      "event_time_s": 0.5359673673167037,
+      "maximum_implicit_residual": 9.651723864578798e-13,
+      "event_time_error": 4.5208281562736374e-13
+    },
+    "1.05": {
+      "event_time_s": 0.850378333972072,
+      "maximum_implicit_residual": 9.159339953157541e-16,
+      "event_time_error": 1.1102230246251565e-16
+    },
+    "1.20": {
+      "event_time_s": 0.4883218964815743,
+      "maximum_implicit_residual": 4.996003610813204e-16,
+      "event_time_error": 3.3306690738754696e-16
+    }
+  },
+  "software": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.8"
+  }
+}

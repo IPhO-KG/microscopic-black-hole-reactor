@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# LaTeX intermediates; keep the paper PDF and figure PDFs tracked.
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk

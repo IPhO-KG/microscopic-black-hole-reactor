@@ -1,49 +1,41 @@
 # Stability of a Microscopic Black Hole Reactor
 
-This repository contains the paper, source files, and numerical code for:
+**Paper:** [Read the current PDF](paper/main.pdf)  
+**Author:** Emir Anaraly uulu, Bishkek, Kyrgyz Republic
 
-**Stability of a Microscopic Black Hole Reactor: Hawking Evaporation and a Fixed-Medium Bondi Model**
+This repository contains the manuscript, LaTeX source and code for an idealized mass-balance model. The model combines Bondi accretion with a blackbody approximation to Hawking emission:
 
-**Author:** Emir Anaraly uulu  
-**Location:** Bishkek, Kyrgyz Republic
+$$\dot M=AM^2-\frac{B}{M^2},\qquad A,B>0.$$
 
-## Overview
+Its only positive equilibrium is $M_{\mathrm{crit}}=(B/A)^{1/4}$. It is **unstable**: a small perturbation in mass grows rather than returning to the balance. The manuscript derives an exact implicit solution, checks numerical trajectories against it and distinguishes the model's timescales. This conclusion applies to the stated fixed-coefficient equation. The water-like parameters are a formal example; realistic emission, continuum accretion and feedback need separate treatment.
 
-This project studies whether accretion from a surrounding medium can balance Hawking evaporation for a microscopic black hole.
+## Files
 
-The model combines idealized Bondi accretion with a blackbody approximation to Hawking radiation:
+| Path | Purpose |
+| --- | --- |
+| [`paper/main.pdf`](paper/main.pdf) | Current eight-page manuscript |
+| [`paper/main.tex`](paper/main.tex) | Editable LaTeX source |
+| [`paper/reproduce.py`](paper/reproduce.py) | Recomputes constants, integrates trajectories and draws the figures |
+| [`paper/results.json`](paper/results.json) | Reference values and numerical consistency checks |
+| [`paper/figures/`](paper/figures/) | Three vector PDF figures |
+| [`requirements.txt`](requirements.txt) | Python versions used for the supplied results |
 
-\[
-\dot{M} = AM^2 - \frac{B}{M^2}.
-\]
+## Reproduce
 
-The equation has one positive equilibrium mass,
-
-\[
-M_{\mathrm{crit}} = \left(\frac{B}{A}\right)^{1/4},
-\]
-
-but this equilibrium is unstable: a small increase in mass leads to further growth, while a small decrease leads to further evaporation.
-
-The project also derives an exact implicit solution, compares it with numerical integration, and discusses the physical limitations of the model.
-
-## Main result
-
-Within the fixed-coefficient Hawking–Bondi model, passive mass balance is unstable.
-
-This result applies to the stated idealized equation and is not a general impossibility result for black-hole energy systems.
-
-## Repository contents
-
-- `paper.pdf` — final version of the research paper
-- `main.tex` — LaTeX source
-- `reproduce.py` — numerical calculations and figure generation
-- `results.json` — numerical results used in the paper
-- `figures/` — figures used in the manuscript
-
-## Reproducing the results
-
-Install the required Python packages:
+Use Python 3.11 or newer and a LaTeX installation with `pdflatex`. From the repository root:
 
 ```bash
-pip install numpy scipy matplotlib
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+cd paper
+python reproduce.py
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+```
+
+On Windows, activate the environment with `.venv\Scripts\activate` before continuing. The script writes `results.json` and regenerates `figures/figure1.pdf` through `figure3.pdf`; `pdflatex` writes `main.pdf`. It checks its numerical integrations against the analytic implicit solution.
+
+## Scope
+
+The blackbody lifetime and water-like Bondi parameters are illustrative outputs of the stated model, not predictions for a realizable energy system. The source PDF and code are provided so the derivations and plots can be inspected and reproduced.
