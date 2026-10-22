@@ -2,7 +2,7 @@
 
 **Stability of the Hawking–Bondi balance in fixed and thermally coupled media**
 
-**Paper:** [Read the PDF](full-paper/main.pdf) (12 pages)  
+**Paper:** [Read the PDF](full-paper/main.pdf) (13 pages)  
 **Author:** Emir Anaraly uulu, Bishkek, Kyrgyz Republic · [anarem1004@gmail.com](mailto:anarem1004@gmail.com)
 
 A microscopic black hole loses mass by Hawking evaporation and can regain it by accreting the surrounding gas. This project asks whether the two processes can hold its mass constant, and answers the question in two steps.
