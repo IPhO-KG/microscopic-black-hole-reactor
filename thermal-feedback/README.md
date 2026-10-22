@@ -2,7 +2,7 @@
 
 **Paper:** [Read the PDF](main.pdf) · Revised 22 October 2026  
 **Author:** Emir Anaraly uulu, Bishkek, Kyrgyz Republic  
-**Builds on:** [Paper I — fixed-medium model](../paper/)
+**Builds on:** [Paper I — fixed-medium model](../paper/) · **Combined version:** [full paper](../full-paper/)
 
 Paper I showed that the fixed-medium Hawking–Bondi balance is unstable. Here the medium can heat up: Hawking power deposited in a reservoir raises an effective temperature $T$, which raises the sound speed and lowers the Bondi coefficient, $A(T)\propto T^{-3/2}$. In dimensionless form,
 

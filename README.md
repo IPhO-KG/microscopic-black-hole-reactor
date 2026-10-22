@@ -1,52 +1,58 @@
-# Stability of a Microscopic Black Hole Reactor
+# Can a Microscopic Black Hole Be Held at Constant Mass?
 
-**Author:** Emir Anaraly uulu, Bishkek, Kyrgyz Republic
+**Stability of the Hawking–Bondi balance in fixed and thermally coupled media**
 
-## Papers in this project
+**Paper:** [Read the PDF](full-paper/main.pdf) (12 pages)  
+**Author:** Emir Anaraly uulu, Bishkek, Kyrgyz Republic · [anarem1004@gmail.com](mailto:anarem1004@gmail.com)
 
-| # | Paper | Question | Result |
-| --- | --- | --- | --- |
-| I | [Hawking evaporation and a fixed-medium Bondi model](paper/main.pdf) · [folder](paper/) | Can a fixed medium balance Hawking mass loss? | One balance mass, **unstable** |
-| II | [Thermal feedback: a coupled Hawking–Bondi model](thermal-feedback/main.pdf) · [folder](thermal-feedback/) | Does heating of the medium stabilize it? | Balance shifts but is a **saddle** for every feedback strength |
+A microscopic black hole loses mass by Hawking evaporation and can regain it by accreting the surrounding gas. This project asks whether the two processes can hold its mass constant, and answers the question in two steps.
 
-Paper II is the continuation (development) of Paper I. Its details are in [`thermal-feedback/README.md`](thermal-feedback/README.md); the rest of this page describes Paper I.
+1. **Fixed medium.** Bondi accretion and blackbody Hawking evaporation give $\dot M=AM^2-B/M^2$. The single balance mass $M_{\rm crit}=(B/A)^{1/4}$ is **unstable**, and the equation has an exact implicit solution that gives evaporation and growth times on either side.
+2. **Thermal feedback.** Letting the hole's radiation heat the gas, so that the Bondi rate falls as $T^{-3/2}$, shifts the balance to a hotter, heavier state, but the Jacobian determinant is negative for every positive heating and cooling strength: the equilibrium is a **saddle**. A sign theorem extends this to any one-zone model in which heating falls with mass, accretion falls with temperature and cooling rises with temperature.
 
-## Paper I
+The physical reason is the sign of the feedback. An ordinary accreting black hole radiates more when it accretes more, which limits further accretion. A Hawking-powered hole radiates more when it *loses* mass, so heating suppresses accretion exactly when accretion is needed.
 
-This repository contains the manuscript, LaTeX source and code for an idealized mass-balance model. The model combines Bondi accretion with a blackbody approximation to Hawking emission:
+<p align="center">
+  <img src="full-paper/fixed_medium.png" width="48%" alt="Net mass rate in the fixed medium, crossing zero with positive slope">
+  <img src="full-paper/phase_portrait.png" width="44%" alt="Phase portrait of the coupled mass-temperature system with a saddle equilibrium">
+</p>
+<p align="center"><em>Left: the fixed-medium balance repels perturbations. Right: with thermal feedback the balance becomes a saddle.</em></p>
 
-$$\dot M=AM^2-\frac{B}{M^2},\qquad A,B>0.$$
+## How the project developed
 
-Its only positive equilibrium is $M_{\mathrm{crit}}=(B/A)^{1/4}$. It is **unstable**: a small perturbation in mass grows rather than returning to the balance. The manuscript derives an exact implicit solution, checks numerical trajectories against it and distinguishes the model's timescales. This conclusion applies to the stated fixed-coefficient equation. The water-like parameters are a formal example; realistic emission, continuum accretion and feedback need separate treatment.
+| Date | Stage | Where |
+| --- | --- | --- |
+| April 2026 | Olympiad problem on the Hawking–Bondi balance, written for the Kyrgyz national physics competition and used in IPhO-2026 team selection | — |
+| May–September 2026 | **Paper I:** full analysis of the fixed medium, exact solution, timescales | [`paper/`](paper/) |
+| September–October 2026 | **Paper II:** thermal feedback, saddle theorem, plasma-scale estimates | [`thermal-feedback/`](thermal-feedback/) |
+| October 2026 | **Combined paper** presenting both steps as one study | [`full-paper/`](full-paper/) |
 
-### Files
+## Repository layout
 
-| Path | Purpose |
+| Path | Contents |
 | --- | --- |
-| [`paper/main.pdf`](paper/main.pdf) | Current eight-page manuscript |
-| [`paper/main.tex`](paper/main.tex) | Editable LaTeX source |
-| [`paper/reproduce.py`](paper/reproduce.py) | Recomputes constants, integrates trajectories and draws the figures |
-| [`paper/results.json`](paper/results.json) | Reference values and numerical consistency checks |
-| [`paper/figures/`](paper/figures/) | Three vector PDF figures |
+| [`full-paper/`](full-paper/) | Combined manuscript (`main.pdf`, `main.tex`) |
+| [`paper/`](paper/) | Paper I: manuscript, LaTeX source, `reproduce.py`, results and figures |
 | [`thermal-feedback/`](thermal-feedback/) | Paper II: manuscript, LaTeX source, `reproduce.py`, results and figures |
-| [`requirements.txt`](requirements.txt) | Python versions used for the supplied results |
+| [`requirements.txt`](requirements.txt) | Python package versions |
 
-### Reproduce
+## Reproduce
 
 Use Python 3.11 or newer and a LaTeX installation with `pdflatex`. From the repository root:
 
 ```bash
 python3 -m venv .venv
-source .venv/bin/activate
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
 python -m pip install -r requirements.txt
-cd paper
-python reproduce.py
+(cd paper && python reproduce.py)
+(cd thermal-feedback && python reproduce.py)
+cd full-paper
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
 pdflatex -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-On Windows, activate the environment with `.venv\Scripts\activate` before continuing. The script writes `results.json` and regenerates `figures/figure1.pdf` through `figure3.pdf`; `pdflatex` writes `main.pdf`. It checks its numerical integrations against the analytic implicit solution.
+The combined paper reads its figures from `paper/figures/` and `thermal-feedback/figures/`. Each script checks its own results: Paper I compares numerical trajectories with the exact solution, and Paper II verifies the sign of the determinant and the eigenvalue inequalities over a parameter grid.
 
-### Scope
+## Scope
 
-The blackbody lifetime and water-like Bondi parameters are illustrative outputs of the stated model, not predictions for a realizable energy system. The source PDF and code are provided so the derivations and plots can be inspected and reproduced.
+The results are exact statements about idealized models: a photon-blackbody Hawking luminosity, steady Bondi accretion and, in the second step, a one-zone thermal reservoir. They are not predictions for a realizable energy source. The paper discusses what a physical model would additionally require.
