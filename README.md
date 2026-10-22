@@ -28,7 +28,7 @@ Its only positive equilibrium is $M_{\mathrm{crit}}=(B/A)^{1/4}$. It is **unstab
 | [`paper/reproduce.py`](paper/reproduce.py) | Recomputes constants, integrates trajectories and draws the figures |
 | [`paper/results.json`](paper/results.json) | Reference values and numerical consistency checks |
 | [`paper/figures/`](paper/figures/) | Three vector PDF figures |
-| [`thermal-feedback/`](thermal-feedback/) | Paper II: manuscript, `reproduce.py`, results and figures |
+| [`thermal-feedback/`](thermal-feedback/) | Paper II: manuscript, LaTeX source, `reproduce.py`, results and figures |
 | [`requirements.txt`](requirements.txt) | Python versions used for the supplied results |
 
 ### Reproduce

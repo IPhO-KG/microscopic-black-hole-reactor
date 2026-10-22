@@ -36,22 +36,22 @@
 \vspace{13pt}
 {\normalsize Emir Anaraly uulu\par}
 Independent Researcher, Bishkek, Kyrgyz Republic\\[7pt]
-Original manuscript: 10 May 2026 \quad\textbar\quad Revised: 27 September 2026
+Original manuscript: 10 May 2026 \quad\textbar\quad Revised: 22 October 2026
 \end{center}
 \vspace{6pt}
 
 \begin{abstract}
-Can a fixed surrounding medium balance the mass loss of a microscopic black hole? We combine idealized Bondi accretion with a blackbody approximation to Hawking emission, then analyze the resulting mass equation. We find a single positive balance, but a small change in mass drives the system away from it. An exact implicit solution and numerical trajectories show how the evolution differs near and far from the balance. For an illustrative water-like choice of parameters, the reference black hole evaporates rapidly in the blackbody model, while departures from a nearly balanced state can be slow. This instability is an exact property of the fixed-coefficient equation, not a general impossibility result for black hole energy systems. Continuum accretion, realistic emission spectra and environmental feedback require separate treatment.
+Can a fixed surrounding medium balance the mass loss of a microscopic black hole? We combine idealized Bondi accretion with a blackbody approximation to Hawking emission, then analyze the resulting mass equation. We find a single positive balance, but a small change in mass drives the system away from it. An exact implicit solution and numerical trajectories show how the evolution differs near and far from the balance. For an illustrative water-like choice of parameters, the reference black hole evaporates rapidly in the blackbody model, while departures from a nearly balanced state can be slow. The instability is an exact property of the fixed-coefficient equation. Continuum accretion, realistic emission spectra and the response of the medium to the hole's radiation lie outside the model.
 \end{abstract}
 
 \section{Introduction and scope}
 Hawking radiation suggests a theoretical energy source whose luminosity increases as a black hole loses mass~\cite{hawking}. If surrounding matter replenishes that mass, equality between gain and loss might appear to offer a stationary state. The relevant question is whether a small change in mass returns the system to that state.
 
-This study grew from an olympiad problem written for the Kyrgyz Republic national physics competition and used in IPhO-2026 team selection (Day 2, Problem 3, April 2026). Hawking emission and Bondi accretion are established starting points; here we connect their idealized mass balance to a stability test, exact mass trajectories and reproducible numerical scales.
+This study grew from an olympiad problem written for the Kyrgyz Republic national physics competition and used in IPhO-2026 team selection (Day 2, Problem 3, April 2026). Hawking emission and Bondi accretion are established starting points; here we analyze the stability of their idealized mass balance, solve the mass evolution exactly and compute the resulting timescales.
 
-First, we derive the coefficients from standard black hole thermodynamics and an idealized accretion law. We then reduce the mass dynamics to a one-variable, dimensionless equation, solve it exactly and analyze departures from equilibrium. Finally, we restore dimensions and use one numerical example to illustrate the timescales. The mathematics solves the stated equation exactly, while its physical accuracy still depends on the assumptions of the model.
+First, we derive the coefficients from standard black hole thermodynamics and an idealized accretion law. We then reduce the mass dynamics to a one-variable, dimensionless equation, solve it exactly and analyze departures from equilibrium. Finally, we restore dimensions and use one numerical example to illustrate the timescales.
 
-We consider an uncharged, nonrotating black hole, a prescribed medium with fixed density and sound speed, and no active control. The mass $M$ and time $t$ use the asymptotic Schwarzschild description. ``Reactor'' motivates the question; we do not model construction, confinement, energy collection or net useful power.
+We consider an uncharged, nonrotating black hole, a prescribed medium with fixed density and sound speed, and no active control. The mass $M$ and time $t$ use the asymptotic Schwarzschild description. The word ``reactor'' names the motivating question; construction, confinement, energy collection and net useful power are outside the scope of this paper.
 
 \section{Preliminaries}
 \subsection{Hawking temperature and an emission approximation}
@@ -60,7 +60,7 @@ For a Schwarzschild black hole, the horizon radius $r_s$ and Hawking temperature
  r_s=\frac{2GM}{c^2},\qquad T_H=\frac{\hbar c^3}{8\pi GMk_B}.
  \label{eq:temperature}
 \end{equation}
-The radius follows from the Schwarzschild geometry; a Newtonian escape-speed argument reproduces its algebraic form without deriving an event horizon. Similarly, an uncertainty-principle estimate suggests $T_H\propto M^{-1}$ but does not fix the numerical coefficient. Appendix~\ref{app:temperature} derives that coefficient from Euclidean regularity~\cite{gibbons,genolini}.
+Simple estimates (a Newtonian escape speed for $r_s$, the uncertainty principle for $T_H$) reproduce both scalings but not the coefficient of $T_H$; Appendix~\ref{app:temperature} derives it from the regularity of the Euclidean geometry~\cite{gibbons,genolini}.
 
 To obtain a simple baseline, we approximate the hole as a photon blackbody with horizon area $\mathcal A_H=4\pi r_s^2$. The Stefan--Boltzmann law, with $\sigma=\pi^2 k_B^4/(60\hbar^3c^2)$, gives
 \begin{equation}
@@ -75,21 +75,21 @@ Mass-energy conservation defines the evaporation coefficient $B$:
 \end{equation*}
 These expressions give $K=3.56\times10^{32}\,\mathrm{W\,kg^2}$ and $B=3.96\times10^{15}\,\mathrm{kg^3\,s^{-1}}$. At the illustrative mass $M_0=10^7\,\mathrm{kg}$, $T_H=1.23\times10^{16}\,\mathrm{K}$ and $\Pbb=3.56\times10^{18}\,\mathrm{W}$.
 
-Equation~\eqref{eq:temperature} gives the semiclassical temperature, whereas Eq.~\eqref{eq:power} gives a simplified luminosity. Actual spectra depend on frequency- and spin-dependent transmission probabilities (greybody factors) and on the particle species accessible at the relevant temperature~\cite{page,macgibbon}. Here $k_BT_H\simeq1.06\,\mathrm{TeV}$, so the photon blackbody is not a realistic lifetime model. All luminosities and lifetimes quoted below refer to this explicit baseline.
+Equation~\eqref{eq:temperature} gives the semiclassical temperature, whereas Eq.~\eqref{eq:power} gives a simplified luminosity. Actual spectra depend on frequency- and spin-dependent transmission probabilities (greybody factors) and on the particle species accessible at the relevant temperature~\cite{page,macgibbon}. Here $k_BT_H\simeq1.06\,\mathrm{TeV}$, where many particle species are emitted, so the photon blackbody underestimates the true luminosity. All luminosities and lifetimes quoted below refer to this baseline.
 
-\subsection{Bondi scaling and its coefficient}
+\subsection{Bondi scaling and its coefficient}\label{sec:bondi}
 For steady spherical accretion of a polytropic gas at rest far from the object, the Bondi formula is~\cite{bondi}
 \begin{equation*}
  \dot M_{\rm acc}=4\pi\lambda\rho_\infty\frac{G^2M^2}{c_\infty^3}=AM^2,
  \qquad A=\frac{4\pi\lambda\rho_\infty G^2}{c_\infty^3}.
 \end{equation*}
-Here $\rho_\infty$ and $c_\infty$ are the distant density and sound speed, and $\lambda$ depends on the flow and equation of state. For the limiting polytropic solution with adiabatic index $\gamma=5/3$, $\lambda=1/4$. Bondi accretion includes gas pressure; it is not a pressureless-flow law.
+Here $\rho_\infty$ and $c_\infty$ are the distant density and sound speed, and $\lambda$ depends on the flow and equation of state. For the limiting polytropic solution with adiabatic index $\gamma=5/3$, $\lambda=1/4$.
 
 We use the original water-like reference values $\rho_\infty=10^3\,\mathrm{kg\,m^{-3}}$, $c_\infty=1500\,\mathrm{m\,s^{-1}}$ and $\lambda=1/4$. They give $A=4.15\times10^{-27}\,\mathrm{kg^{-1}\,s^{-1}}$. A liquid is not the polytropic gas assumed in the Bondi derivation, so these values define a formal example rather than a validated accretion model for water. The characteristic Bondi scale, in our convention, is
 \begin{equation*}
  r_B=\frac{GM}{c_\infty^2},\qquad r_B(M_0)=2.97\times10^{-10}\,\mathrm m.
 \end{equation*}
-At $M_0$ this is comparable to molecular scales. The example therefore lacks a clear separation of scales for continuum flow; heating would also change the prescribed medium.
+At $M_0$ this is comparable to molecular scales. The example therefore lacks the separation of scales required for continuum flow, and the hole's radiation would also heat the medium, which the model holds fixed.
 
 \subsection{Combined mass dynamics}
 With $A$ and $B$ held positive and constant, the model becomes
@@ -97,15 +97,15 @@ With $A$ and $B$ held positive and constant, the model becomes
  \dot M=f(M)=AM^2-\frac{B}{M^2},\qquad M>0.
  \label{eq:mass}
 \end{equation}
-The two terms each have units of $\mathrm{kg\,s^{-1}}$, since $[A]=\mathrm{kg^{-1}\,s^{-1}}$ and $[B]=\mathrm{kg^3\,s^{-1}}$. At $M_0$,
+At $M_0$,
 \begin{equation*}
  AM_0^2=4.15\times10^{-13}\,\mathrm{kg\,s^{-1}},\qquad
  \frac{B}{M_0^2}=39.6\,\mathrm{kg\,s^{-1}}.
 \end{equation*}
-The accretion-to-evaporation ratio is $1.05\times10^{-14}$. Accretion is negligible at this particular mass, even though the terms can formally balance at another mass.
+The accretion-to-evaporation ratio is $1.05\times10^{-14}$. Accretion is negligible at $M_0$; the two terms balance only at a much larger mass (Sec.~\ref{sec:unique}).
 
 \section{Stability and an exact solution}
-\subsection{A unique, unstable equilibrium}
+\subsection{A unique, unstable equilibrium}\label{sec:unique}
 Setting $f(M)=0$ in Eq.~\eqref{eq:mass} gives one positive balance mass,
 \begin{equation}
  \Mcrit=\left(\frac BA\right)^{1/4}.
@@ -120,7 +120,7 @@ A small increase in mass strengthens accretion and weakens evaporation, producin
 \begin{equation*}
  \delta M(t)\simeq\delta M(0)e^{t/t_e},\qquad t_e=\frac{1}{4A\Mcrit}.
 \end{equation*}
-Thus the balance repels small perturbations, although the rate at which a trajectory departs from it can be very small.
+The balance therefore repels small perturbations, although for weak accretion the e-folding time $t_e$ is long.
 
 \subsection{One dimensionless equation}
 We measure mass in units of $\Mcrit$ and time in units of $\tstar$:
@@ -177,7 +177,7 @@ For the supercritical branch, $F(x)\to\pi/4$ as $x\to\infty$. We call $t_\infty$
  \frac{t_\infty}{\tstar}=\frac\pi4-F(x_0),\qquad
  \frac{t_{\rm double}}{\tstar}=F(2x_0)-F(x_0),\quad x_0>1.
 \end{equation*}
-These are mathematical endpoints, not predictions that real matter can sustain unbounded growth or that a semiclassical description remains valid down to zero mass. On either side of equilibrium, terminal times grow as $-\tstar\ln|x_0-1|/4+O(\tstar)$ when $x_0\to1$. Exactly at $x_0=1$ the mass stays fixed, so there is no finite doubling time.
+Both are endpoints of the equation: a real medium has a finite supply of matter, and the semiclassical description fails before $M=0$. On either side of equilibrium, terminal times grow as $-\tstar\ln|x_0-1|/4+O(\tstar)$ when $x_0\to1$. Exactly at $x_0=1$ the mass stays fixed, so there is no finite doubling time.
 
 \section{Numerical verification and reference scales}
 \subsection{Method and consistency checks}
@@ -185,9 +185,9 @@ We numerically integrate Eq.~\eqref{eq:dimensionless} with Python's \texttt{scip
 \begin{equation*}
  \frac{du}{ds}=3(u^{4/3}-1),\qquad \frac{dv}{ds}=v^4-1,
 \end{equation*}
-respectively. We stop trajectories at $x=0.05$ or $x=2.2$ using event detection. The filled endpoints in Figure~\ref{fig:trajectories} are numerical cutoffs, not complete evaporation or infinite mass.
+respectively. We stop trajectories at $x=0.05$ or $x=2.2$ using event detection.
 
-For the four plotted curves, the maximum absolute residual $|s-F(x)+F(x_0)|$ at 501 samples per trajectory is $1.67\times10^{-12}$. The largest difference between a numerical cutoff time and the exact time in Eq.~\eqref{eq:implicit} is $4.92\times10^{-13}$. These numbers check the numerical integration of the stated equation; they are not uncertainties on its physical assumptions. The supplied script regenerates the figures and reports the residuals.
+For the four plotted curves, the maximum absolute residual $|s-F(x)+F(x_0)|$ at 501 samples per trajectory is $1.67\times10^{-12}$. The largest difference between a numerical cutoff time and the exact time in Eq.~\eqref{eq:implicit} is $4.92\times10^{-13}$. The supplied script regenerates the figures and reports the residuals.
 
 \begin{figure}[tbp]
  \centering\includegraphics[width=.94\linewidth]{figure2.pdf}
@@ -202,9 +202,9 @@ For the reference coefficients,
  \tstar=2.44\times10^8\,\mathrm{yr},\qquad
  t_e=6.11\times10^7\,\mathrm{yr}.
 \end{equation*}
-By contrast, $M_0/\Mcrit=3.20\times10^{-4}$ and $\taubb(M_0)=23.37\,\mathrm h$. The reference hole is far below the near-equilibrium mass represented in Figure~\ref{fig:trajectories}. Its short lifetime cannot be generalized to every subcritical starting mass.
+By contrast, $M_0/\Mcrit=3.20\times10^{-4}$ and $\taubb(M_0)=23.37\,\mathrm h$. The reference hole lies far below the balance mass, and its short lifetime does not carry over to holes that start near $\Mcrit$.
 
-For example, a starting ratio $x_0=0.95$ has a formal evaporation time $0.5360\tstar=1.31\times10^8$ yr. A trajectory starting at $x_0=1.05$ takes $0.8277\tstar=2.02\times10^8$ yr to double. The balance itself stays stationary, so $\tstar$ is not a universal doubling time. At $M_0$, Eq.~\eqref{eq:delay} predicts a fractional lifetime correction of only $4.48\times10^{-15}$; we infer this from the analytic series and do not claim to resolve it with the numerical tolerances used for Figure~\ref{fig:trajectories}.
+For example, a starting ratio $x_0=0.95$ has a formal evaporation time $0.5360\tstar=1.31\times10^8$ yr. A trajectory starting at $x_0=1.05$ takes $0.8277\tstar=2.02\times10^8$ yr to double. Both times depend on $x_0$; $\tstar$ is a time unit, not a doubling time. At $M_0$, Eq.~\eqref{eq:delay} predicts a fractional lifetime correction of only $4.48\times10^{-15}$; this value follows from the series and lies far below the tolerance of the numerical integration.
 
 \section{Physical interpretation and limitations}
 \subsection{Changing the medium shifts an unstable balance}
@@ -218,7 +218,7 @@ Let $A_{\rm ref}$ denote the coefficient of our illustrative medium, and let $Q=
 \begin{equation*}
  Q_{\rm bal}=\frac{B}{A_{\rm ref}M_0^4}=9.56\times10^{13}.
 \end{equation*}
-If density alone changed while sound speed and $\lambda$ were artificially held fixed, this would correspond to $\rho_{\rm req}=9.56\times10^{16}\,\mathrm{kg\,m^{-3}}$. The extrapolation is not a proposed material: at such a change the equation of state and accretion model must be reconsidered. Figure~\ref{fig:medium} plots coefficient sensitivity, not a map of realizable substances.
+If density alone changed while sound speed and $\lambda$ were artificially held fixed, this would correspond to $\rho_{\rm req}=9.56\times10^{16}\,\mathrm{kg\,m^{-3}}$. No known material combines this density with that sound speed, and the Bondi model would not apply to one that did. Figure~\ref{fig:medium} therefore shows the sensitivity of the balance to $A$, not a range of realizable media.
 
 \begin{figure}[tbp]
  \centering\includegraphics[width=.94\linewidth]{figure3.pdf}
@@ -245,14 +245,14 @@ A general local test shows where this conclusion stops. Write $\dot M=C(M)-E(M)$
 \begin{equation*}
  \left.\frac{d\dot M}{dM}\right|_{M_*}=\frac{R_*}{M_*}(p-q).
 \end{equation*}
-Here $p=2$ and $q=-2$. Other laws can give a different sign: $p<q$ gives local asymptotic stability, while $p=q$ needs higher-order analysis. If gas temperature, density or black hole spin also evolve, one must test the stability of the full coupled system.
+Here $p=2$ and $q=-2$. Other laws can give a different sign: $p<q$ gives local asymptotic stability, while $p=q$ needs higher-order analysis. If the gas temperature, density or black hole spin also evolve, the stability of the full coupled system has to be tested separately.
 
-The main physical uncertainties are the continuum Bondi approximation at the reference scale, radiation-dependent heating and flow, realistic Hawking spectra, finite reservoirs and additional degrees of freedom such as angular momentum or charge. None is contained in Eq.~\eqref{eq:mass}. The quantity $M_0c^2$ is likewise not guaranteed useful energy, because collection efficiency and weakly interacting emissions are outside this calculation.
+The main physical uncertainties are the continuum Bondi approximation at the reference scale, radiation-dependent heating and flow, realistic Hawking spectra, finite reservoirs and additional degrees of freedom such as angular momentum or charge. None is contained in Eq.~\eqref{eq:mass}. Finally, $M_0c^2$ measures the energy radiated by the evaporating reference hole, not the useful energy, since collection efficiency and weakly interacting emission are not modeled.
 
 \section{Conclusion}
 Within the fixed-coefficient law $\dot M=AM^2-B/M^2$ for positive $A$ and $B$, there is one positive balance and it is unstable. The exact solution and independently integrated trajectories show motion away from it on both sides. The model also distinguishes a short blackbody lifetime far below equilibrium from a slow departure when the initial mass lies very close to equilibrium.
 
-The supported conclusion is specific: passive mass balance is unstable in this idealized Hawking--Bondi equation. A natural physical extension is to calculate how radiation changes the surrounding medium and accretion rate, then test the resulting coupled dynamics. Rotation would require simultaneous evolution of mass and angular momentum rather than a replacement of the temperature alone.
+Passive mass balance is therefore unstable in this idealized Hawking--Bondi equation. The natural next step is to let the radiation change the surrounding medium and hence the accretion rate. A companion paper~\cite{paperII} carries out this extension with a one-zone thermal reservoir and finds that heating shifts the balance but leaves it unstable. Including rotation would require evolving the angular momentum together with the mass.
 
 \appendix
 \section{The coefficient in the Hawking temperature}\label{app:temperature}
@@ -275,7 +275,7 @@ For this plane to be smooth at $R=0$, $\theta$ must have period $2\pi$. Hence $t
 This argument fixes the temperature of the regular thermal Schwarzschild state. On its own it does not calculate outgoing flux after collapse or transmission through the exterior potential; those need a quantum-field and greybody calculation~\cite{hawking,page}.
 
 \section{Reference values and reproducibility}\label{app:values}
-We use SI units with $G=6.67430\times10^{-11}\,\mathrm{m^3kg^{-1}s^{-2}}$, $c=299792458\,\mathrm{m\,s^{-1}}$, $h=6.62607015\times10^{-34}\,\mathrm{J\,s}$, $k_B=1.380649\times10^{-23}\,\mathrm{J\,K^{-1}}$, $\hbar=h/(2\pi)$, and one year of 365.25 days. The medium parameters are defined in Sec.~2.2. Displayed quantities are rounded; calculations use full floating-point precision.
+We use SI units with $G=6.67430\times10^{-11}\,\mathrm{m^3kg^{-1}s^{-2}}$, $c=299792458\,\mathrm{m\,s^{-1}}$, $h=6.62607015\times10^{-34}\,\mathrm{J\,s}$, $k_B=1.380649\times10^{-23}\,\mathrm{J\,K^{-1}}$, $\hbar=h/(2\pi)$, and one year of 365.25 days. The medium parameters are defined in Sec.~\ref{sec:bondi}. Displayed quantities are rounded; calculations use full floating-point precision.
 
 \begin{table}[htbp]
 \centering\small
@@ -310,6 +310,7 @@ The accompanying repository contains \texttt{main.tex}, \texttt{reproduce.py}, t
 \bibitem{page} D. N. Page, ``Particle emission rates from a black hole: Massless particles from an uncharged, nonrotating hole,'' \emph{Physical Review D} \textbf{13}, 198--206 (1976). \href{https://doi.org/10.1103/PhysRevD.13.198}{doi:10.1103/PhysRevD.13.198}.
 \bibitem{macgibbon} J. H. MacGibbon and B. R. Webber, ``Quark- and gluon-jet emission from primordial black holes: The instantaneous spectra,'' \emph{Physical Review D} \textbf{41}, 3052--3079 (1990). \href{https://doi.org/10.1103/PhysRevD.41.3052}{doi:10.1103/PhysRevD.41.3052}.
 \bibitem{bondi} H. Bondi, ``On spherically symmetrical accretion,'' \emph{Monthly Notices of the Royal Astronomical Society} \textbf{112}, 195--204 (1952). \href{https://doi.org/10.1093/mnras/112.2.195}{doi:10.1093/mnras/112.2.195}.
+\bibitem{paperII} E. Anaraly uulu, ``Thermal feedback in a microscopic black hole reactor: stability of a coupled Hawking--Bondi model,'' manuscript (2026). \url{https://github.com/IPhO-KG/microscopic-black-hole-reactor}.
 \bibitem{ciotti} L. Ciotti and J. P. Ostriker, ``Free-free absorption effects on Eddington luminosity'' (2003). \href{https://arxiv.org/abs/astro-ph/0312490}{arXiv:astro-ph/0312490}.
 \end{thebibliography}
 

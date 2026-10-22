@@ -1,4 +1,14 @@
 {
+  "reference_point": {
+    "chi": 1.0,
+    "zeta": 1.0,
+    "x_star": 1.2142762202998907,
+    "theta_star": 1.6782112972939678,
+    "a": 2.234125270530191,
+    "lambda_minus": -1.1973367482437771,
+    "lambda_plus": 2.431462018773968,
+    "det": -2.911278827037072
+  },
   "table1_zeta_1": [
     {
       "chi": 0.01,
@@ -51,21 +61,49 @@
       "det": -0.3360045131397533
     }
   ],
-  "reference_point": {
-    "chi": 1.0,
-    "zeta": 1.0,
-    "x_star": 1.2142762202998907,
-    "theta_star": 1.6782112972939678,
-    "a": 2.234125270530191,
-    "lambda_minus": -1.1973367482437771,
-    "lambda_plus": 2.431462018773968,
-    "det": -2.911278827037072
+  "table2_plasma_diagnostics": {
+    "hot_plasma": {
+      "T0_K": 1000000.0,
+      "n_m3": 1e+20,
+      "cs_m_s": 165875.45284263953,
+      "Mc0_kg": 296482063163241.4,
+      "rB_m": 7.191838143863334e-07,
+      "t_flow_s": 4.33568561267832e-12,
+      "tau_T": 4.784340645999349e-15,
+      "tauT_Pbb_W": 1.9385325093213002e-11,
+      "t_heat_T_s": 0.0003329199130770487,
+      "t_ff_s": 2.6401669385729964,
+      "mfp_ii_over_rB": 2105946.4682120844,
+      "t_heat_over_t_flow": 76785990.22575144,
+      "t_ff_over_t_flow": 608938741050.0143,
+      "chi_if_tau_c_eq_t_flow": 1.302320901325869e-08
+    },
+    "core_proxy": {
+      "T0_K": 15600000.0,
+      "n_m3": 8.967956109835175e+31,
+      "cs_m_s": 655155.5443936281,
+      "Mc0_kg": 853585010542.7012,
+      "rB_m": 1.3272833984509736e-10,
+      "t_flow_s": 2.025905771246164e-16,
+      "tau_T": 7.918434443197894e-07,
+      "tauT_Pbb_W": 387.07365060322627,
+      "t_heat_T_s": 1.4662519329112174e-15,
+      "t_ff_s": 1.1627871223176232e-11,
+      "mfp_ii_over_rB": 3.096558525085263,
+      "t_heat_over_t_flow": 7.23751298664451,
+      "t_ff_over_t_flow": 57395.91341419478,
+      "chi_if_tau_c_eq_t_flow": 0.13816900941598514
+    }
   },
   "checks": {
+    "grid_points": 1681,
     "max_equilibrium_residual": 1.7763568394002505e-15,
     "all_det_negative": true,
-    "all_lambda_plus_positive": true,
     "all_lambda_plus_above_a": true,
-    "grid_points": 1681
+    "all_lambda_minus_below_minus_zeta": true,
+    "fine_scan_lambda_plus_range": [
+      0.2043068013422807,
+      3.9838412824428104
+    ]
   }
 }
