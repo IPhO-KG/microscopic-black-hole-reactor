@@ -13,8 +13,8 @@ A microscopic black hole loses mass by Hawking evaporation and can regain it by 
 The physical reason is the sign of the feedback. An ordinary accreting black hole radiates more when it accretes more, which limits further accretion. A Hawking-powered hole radiates more when it *loses* mass, so heating suppresses accretion exactly when accretion is needed.
 
 <p align="center">
-  <img src="full-paper/fixed_medium.png" width="48%" alt="Net mass rate in the fixed medium, crossing zero with positive slope">
-  <img src="full-paper/phase_portrait.png" width="44%" alt="Phase portrait of the coupled mass-temperature system with a saddle equilibrium">
+  <img src="full-paper/fixed_medium.png" width="49%" alt="Net mass rate in the fixed medium, crossing zero with positive slope">
+  <img src="full-paper/phase_portrait.png" width="47%" alt="Phase portrait of the coupled mass-temperature system with a saddle equilibrium">
 </p>
 <p align="center"><em>Left: the fixed-medium balance repels perturbations. Right: with thermal feedback the balance becomes a saddle.</em></p>
 
